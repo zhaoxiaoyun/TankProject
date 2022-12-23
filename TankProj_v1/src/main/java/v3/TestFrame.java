@@ -1,4 +1,4 @@
-package v1;
+package v3;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -8,30 +8,24 @@ import java.awt.event.WindowEvent;
 
 /**
  * @author: zxy
- * @date: 2022/12/21 - 0:08
- * @description: v1
+ * @date: 2022/12/23 - 17:24
+ * @description: v2
  * @version: 1.0
  */
-
-/*
-* 继承Frame 重新
-* */
-public class TankFrame extends Frame {
+public class TestFrame extends Frame {
     int x = 350;
     int y = 250;
 
-    public TankFrame(){
-        this.setSize(800,600);
-        this.setResizable(false);
-        this.setTitle("tank war");
+    public TestFrame(){
         this.setVisible(true);
-
-        //按键监听  内部类
+        this.setSize(800,600);
+        this.setTitle("Test Frame");
+        this.setResizable(false);
         this.addKeyListener(new MyKeyListener());
-
-        this.addWindowListener(new WindowAdapter() {//匿名内部类
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                System.out.println("closing window...");
                 System.exit(0);
             }
         });
@@ -39,22 +33,20 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g) {
-        System.out.println("paint");
-        g.fill3DRect(x, y,100,100,true);
-        //x+=10;
-        //y+=10;
+        g.fillRoundRect(x,y,50,50,20,40);
+        x+=1;
+        y+=1;
     }
-    class MyKeyListener extends KeyAdapter{
+
+    private class MyKeyListener extends KeyAdapter{
         @Override
         public void keyPressed(KeyEvent e) {
-            System.out.println("key pressed");
-            x+=100;
-            repaint();
+            if(e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
         }
 
         @Override
         public void keyReleased(KeyEvent e) {
-            System.out.println("key released");
+            super.keyReleased(e);
         }
     }
 }

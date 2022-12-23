@@ -1,0 +1,10 @@
+1. Frame类
+setTitle(), setSize(), setResizable(), windowListener()
+
+2. 从Frame继承，重写paint(), 画图
+将tank坐标设为变量，paint调用时，可以移动
+
+按键，移动，按键监听
+
+
+3.
