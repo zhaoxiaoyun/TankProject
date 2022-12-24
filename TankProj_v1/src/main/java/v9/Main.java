@@ -1,4 +1,4 @@
-package v8;
+package v9;
 
 /**
  * @author: zxy
@@ -9,7 +9,8 @@ package v8;
 
 /*
 * day 2:
-7. 使用双缓冲消除 屏幕闪烁
+5. 增加子弹类 bullet
+    增加moving 属性
 *
 * */
 public class Main {

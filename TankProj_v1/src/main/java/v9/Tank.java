@@ -1,4 +1,4 @@
-package v8;
+package v9;
 
 import java.awt.*;
 
@@ -29,10 +29,7 @@ public class Tank {
     }
 
     public void paint(Graphics g) {
-        Color color = g.getColor();
-        g.setColor(Color.GREEN);
         g.fillRoundRect(x,y,50,50,20,40);
-        g.setColor(color);
         move();
     }
 

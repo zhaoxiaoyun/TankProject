@@ -1,20 +1,21 @@
-package v8;
+package v9;
 
 import java.awt.*;
 
 /**
  * @author: zxy
- * @date: 2022/12/24 - 12:03
- * @description: v6
+ * @date: 2022/12/24 - 17:48
+ * @description: v8
  * @version: 1.0
  */
-public class Tank {
+public class Bullet {
+    private final static int SPEED = 10;
+    private final static int WIDTH = 5;
+    private final static int HEIGHT = 5;
     private int x,y;
-    private Dir dir = Dir.DOWN;
-    private static final int SPEED=5;
-    private boolean moving = false;
+    private Dir dir;
 
-    public Tank(int x, int y, Dir dir){
+    public Bullet(int x, int y, Dir dir){
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -28,27 +29,19 @@ public class Tank {
         this.dir = dir;
     }
 
-    public void paint(Graphics g) {
+    public void paint(Graphics g){
         Color color = g.getColor();
-        g.setColor(Color.GREEN);
-        g.fillRoundRect(x,y,50,50,20,40);
+        g.setColor(Color.RED);
+        g.fillOval(x,y, WIDTH,HEIGHT);
         g.setColor(color);
         move();
+
     }
 
     private void move() {
-        if(!moving) return;
         if(dir== Dir.LEFT) x-=SPEED;
         if(dir== Dir.UP) y-=SPEED;
         if(dir== Dir.RIGHT) x+=SPEED;
         if(dir== Dir.DOWN) y+=SPEED;
-    }
-
-    public boolean isMoving() {
-        return moving;
-    }
-
-    public void setMoving(boolean moving) {
-        this.moving = moving;
     }
 }
