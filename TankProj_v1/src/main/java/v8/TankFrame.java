@@ -1,4 +1,4 @@
-package v9;
+package v8;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,13 +9,15 @@ import java.awt.event.*;
  * @description: v2
  * @version: 1.0
  */
-public class TestFrame extends Frame {
-    Tank myTank = new Tank(350,250, Dir.DOWN);
+public class TankFrame extends Frame {
+    Tank myTank = new Tank(350,250, Dir.DOWN,this);
     Bullet bullet = new Bullet(400, 300, Dir.DOWN);
+    private static final int GAME_WIDTH = 800;
+    private static final int GAME_HEIGHT = 600;
 
-    public TestFrame(){
+    public TankFrame(){
         this.setVisible(true);
-        this.setSize(800,600);
+        this.setSize(GAME_WIDTH,GAME_HEIGHT);
         this.setTitle("Test Frame");
         this.setResizable(false);
         this.addKeyListener(new MyKeyListener());
@@ -32,6 +34,22 @@ public class TestFrame extends Frame {
                 System.out.println("mouse clicked...");
             }
         });
+    }
+
+//    使用双缓冲 消除闪烁
+    Image offScreenImage = null;
+    @Override
+    public void update(Graphics g) {// 置于paint前, 每隔50ms 调用repaint-调用update-paint
+        if(offScreenImage==null){
+            offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+        }
+        Graphics gOffScreen = offScreenImage.getGraphics();
+        Color c = gOffScreen.getColor();
+        gOffScreen.setColor(Color.BLACK);
+        gOffScreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        gOffScreen.setColor(c);
+        paint(gOffScreen);
+        g.drawImage(offScreenImage, 0, 0, null);
     }
 
     @Override
@@ -83,6 +101,9 @@ public class TestFrame extends Frame {
                     break;
                 case KeyEvent.VK_DOWN:
                     bD = false;
+                    break;
+                case KeyEvent.VK_SPACE:
+                    myTank.fire();
                     break;
                 default:
                     break;
