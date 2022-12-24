@@ -1,10 +1,7 @@
 package v3;
 
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 /**
  * @author: zxy
@@ -27,6 +24,12 @@ public class TestFrame extends Frame {
             public void windowClosing(WindowEvent e) {
                 System.out.println("closing window...");
                 System.exit(0);
+            }
+        });
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("mouse clicked...");
             }
         });
     }
