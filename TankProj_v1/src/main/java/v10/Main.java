@@ -1,4 +1,4 @@
-package v9;
+package v10;
 
 /**
  * @author: zxy
@@ -8,8 +8,9 @@ package v9;
  */
 
 /*
-* day 2:
-9.  使用容器打出多颗子弹
+* day 3:
+10. 增加坦克、子弹图片
+*   类加载器
 *
 * */
 public class Main {
@@ -20,7 +21,7 @@ public class Main {
         for(int i =0; i<5;i++){
             tf.tanks.add(new Tank(30+i*100, 150, Dir.DOWN, tf));
         }
-
+        
         while(true){
             Thread.sleep(100);
             tf.repaint();

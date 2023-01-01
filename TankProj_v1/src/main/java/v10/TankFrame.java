@@ -1,4 +1,4 @@
-package v9;
+package v10;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -61,6 +61,7 @@ public class TankFrame extends Frame {
         Color color = g.getColor();
         g.setColor(Color.white);
         g.drawString("bullets: " + bullets.size(),10,60);
+        g.drawString("enemies: " + tanks.size(),10,80);
         g.setColor(color);
 
         myTank.paint(g);
@@ -75,8 +76,14 @@ public class TankFrame extends Frame {
         for(int i=0; i<bullets.size();i++){
             bullets.get(i).paint(g);
         }
-    }
 
+        //子弹、坦克 碰撞后消失
+        for(int b = 0; b<bullets.size(); b++){
+            for(int t = 0; t<tanks.size(); t++){
+                bullets.get(b).collideWith(tanks.get(t));
+            }
+        }
+    }
 
     private class MyKeyListener extends KeyAdapter{
         //设置方向
