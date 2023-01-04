@@ -15,7 +15,8 @@ public class TankFrame extends Frame {
     Tank myTank = new Tank(350,250, Dir.DOWN, Group.GOOD,this);
     List<Tank> tanks = new ArrayList<>();
     List<Bullet> bullets = new ArrayList<>();
-    Explodes e = new Explodes(100,100,this);
+    //Explodes e = new Explodes(100,100,this);
+    List<Explodes> explodes = new ArrayList<>();
     public static final int GAME_WIDTH = 800;
     public static final int GAME_HEIGHT = 600;
 
@@ -78,14 +79,20 @@ public class TankFrame extends Frame {
         }
 
         //爆炸
-        e.paint(g);
+        //e.paint(g);
 
         //子弹、坦克 碰撞后消失
         for(int b = 0; b<bullets.size(); b++){
             for(int t = 0; t<tanks.size(); t++){
                 bullets.get(b).collideWith(tanks.get(t));
-
+                if(!(bullets.get(b).isLiving()) && !(tanks.get(t).isLiving())){
+                    explodes.add(new Explodes(tanks.get(t).getX(),tanks.get(t).getY(),this));
+                }
             }
+        }
+
+        for(int i=0; i<explodes.size(); i++){
+            explodes.get(i).paint(g);
         }
 
     }

@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @author: zxy
@@ -32,6 +33,28 @@ public class ImageTest {
             System.out.println("image height: " + image.getHeight());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void configLoad(){
+        String file_name = "config";
+        Properties props = new Properties();
+        try {
+            props.load(ImageTest.class.getClassLoader().getResourceAsStream(file_name));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(props!=null){
+            int speed;
+            System.out.print("iniTankCount: ");
+            System.out.println(props.get("iniTankCount"));
+            System.out.print("tankSpeed: ");
+            speed = Integer.valueOf((String) props.get("tankSpeed"));
+            System.out.println(speed);
+            System.out.print("bulletSpeed: ");
+            System.out.println(props.get("bulletSpeed"));
         }
     }
 }

@@ -40,6 +40,30 @@ public class Bullet {
         this.living = living;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public TankFrame getTf() {
+        return tf;
+    }
+
+    public void setTf(TankFrame tf) {
+        this.tf = tf;
+    }
+
     public void paint(Graphics g){
         if(dir== Dir.LEFT) g.drawImage(ResourceMgr.bulletL,x,y,null);
         if(dir== Dir.UP) g.drawImage(ResourceMgr.bulletU,x,y,null);
